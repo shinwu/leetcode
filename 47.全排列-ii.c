@@ -18,7 +18,7 @@ void backtracking(int **ans, int *nums, int depth, int *returnSize,
   }
 
   for (int i = 0; i < depth; i++) {
-    if (used[i] == 1 || i > 0 && nums[i] == nums[i - 1] && used[i - 1] == 1) {
+    if (used[i] == 1 || i > 0 && nums[i] == nums[i - 1] && used[i - 1] != 1) {
       continue;
     }
 
