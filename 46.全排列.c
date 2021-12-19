@@ -27,6 +27,7 @@ void backtracking(int **ans, int* nums, int depth, int* returnSize, int** return
         used[i] = 0;
     }
 }
+
 /**
  * Return an array of arrays of size *returnSize.
  * The sizes of the arrays are returned as *returnColumnSizes array.
