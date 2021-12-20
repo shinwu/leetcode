@@ -20,6 +20,9 @@ void backtracking(int **ans, int *candidates, int n, int k, int *returnSize,
     if (used[i] == 1) {
       continue;
     }
+    if (n - i < k - depth) {
+      break;
+    }
     path[depth++] = candidates[i];
     used[i] = 1;
     backtracking(ans, candidates, n, k, returnSize, returnColumnSizes, used,
