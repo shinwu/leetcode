@@ -6,8 +6,7 @@
 
 // @lc code=start
 void backtracking(int **ans, int *candidates, int n, int k, int *returnSize,
-                  int **returnColumnSizes, int *used, int *path, int depth,
-                  int index) {
+                  int **returnColumnSizes, int *path, int depth, int index) {
   if (depth == k) {
     ans[*returnSize] = (int *)malloc(sizeof(int) * k);
     memcpy(ans[*returnSize], path, sizeof(int) * k);
@@ -17,18 +16,15 @@ void backtracking(int **ans, int *candidates, int n, int k, int *returnSize,
   }
 
   for (int i = index; i < n; i++) {
-    if (used[i] == 1) {
-      continue;
-    }
     if (n - i < k - depth) {
       break;
     }
+
     path[depth++] = candidates[i];
-    used[i] = 1;
-    backtracking(ans, candidates, n, k, returnSize, returnColumnSizes, used,
-                 path, depth, i);
+    backtracking(ans, candidates, n, k, returnSize, returnColumnSizes, path,
+                 depth, i + 1);
+
     depth--;
-    used[i] = 0;
   }
 }
 
@@ -48,8 +44,8 @@ int **combine(int n, int k, int *returnSize, int **returnColumnSizes) {
   }
   int *used = (int *)malloc(sizeof(int) * n);
   int *path = (int *)malloc(sizeof(int) * k);
-  backtracking(ans, candidates, n, k, returnSize, returnColumnSizes, used, path,
-               0, 0);
+  backtracking(ans, candidates, n, k, returnSize, returnColumnSizes, path, 0,
+               0);
   return ans;
 }
 // @lc code=end
